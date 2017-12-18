@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :user do
     provider "github"
-    uid "some_user_id"
+    sequence(:uid) { |n| "uid#{n}" }
   end
 end

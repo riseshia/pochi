@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_one :secure_token, dependent: :destroy
 
+  has_many :categories
+
   delegate :token, to: :secure_token, allow_nil: true
 
   def self.sign_in!(auth)

@@ -19,3 +19,7 @@ Style/StringLiterals:
 
 Metrics/LineLength:
   Max: 112
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
