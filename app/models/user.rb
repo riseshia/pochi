@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :secure_token, dependent: :destroy
 
   has_many :categories
+  has_many :tasks
 
   delegate :token, to: :secure_token, allow_nil: true
 

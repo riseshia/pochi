@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218215441) do
+ActiveRecord::Schema.define(version: 20171219114229) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 128, null: false
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20171218215441) do
     t.index ["user_id"], name: "index_secure_tokens_on_user_id"
   end
 
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", limit: 256, null: false
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tasks_on_category_id"
+    t.index ["user_id", "category_id"], name: "task_user_id_category_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "provider", limit: 32, null: false
     t.string "uid", limit: 128, null: false
@@ -38,4 +49,6 @@ ActiveRecord::Schema.define(version: 20171218215441) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "secure_tokens", "users"
+  add_foreign_key "tasks", "categories"
+  add_foreign_key "tasks", "users"
 end
