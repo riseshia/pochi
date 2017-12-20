@@ -6,9 +6,7 @@ class CoinsController < ApplicationController
     @coin = Coin.new(coin_params)
     @coin.unit = current_user.default_unit
 
-    if @coin.save
-      redirect_to tasks_path, notice: "Coin was successfully created."
-    end
+    redirect_to tasks_path, notice: "Coin was successfully created." if @coin.save
   end
 
   # DELETE /coins/1
