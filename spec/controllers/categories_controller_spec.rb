@@ -27,14 +27,6 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      category = create(:category, user: user)
-      get :show, params: { id: category.to_param }, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
@@ -60,7 +52,7 @@ RSpec.describe CategoriesController, type: :controller do
 
       it "redirects to the created category" do
         post :create, params: { category: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Category.last)
+        expect(response).to redirect_to(categories_path)
       end
     end
 
@@ -88,7 +80,7 @@ RSpec.describe CategoriesController, type: :controller do
       it "redirects to the category" do
         category = create(:category, user: user)
         put :update, params: { id: category.to_param, category: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(category)
+        expect(response).to redirect_to(categories_path)
       end
     end
 

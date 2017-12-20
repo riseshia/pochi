@@ -5,11 +5,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
-
-  # GET /categories/1
-  def show; end
 
   # GET /categories/new
   def new
@@ -25,7 +22,7 @@ class CategoriesController < ApplicationController
     @category.user = current_user
 
     if @category.save
-      redirect_to @category, notice: "Category was successfully created."
+      redirect_to categories_path, notice: "Category was successfully created."
     else
       render :new
     end
@@ -34,7 +31,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: "Category was successfully updated."
+      redirect_to categories_path, notice: "Category was successfully updated."
     else
       render :edit
     end

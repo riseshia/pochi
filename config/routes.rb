@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root to: "top#index"
 
-  resources :categories
+  resources :categories, only: %i[index new edit create update destroy]
   resources :tasks
   resources :coins, only: %i[create destroy]
 
