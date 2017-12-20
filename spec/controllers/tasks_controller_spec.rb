@@ -86,7 +86,7 @@ RSpec.describe TasksController, type: :controller do
         task = create(:task, category: category, user: user)
         put :update, params: { id: task.to_param, task: new_attributes }, session: valid_session
         task.reload
-        skip("Add assertions for updated state")
+        expect(task.name).to eq("Updated name")
       end
 
       it "redirects to the task" do

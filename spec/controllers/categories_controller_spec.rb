@@ -75,14 +75,14 @@ RSpec.describe CategoriesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) do
-        { category: { name: "Play" } }
+        { name: "Play" }
       end
 
       it "updates the requested category" do
         category = create(:category, user: user)
         put :update, params: { id: category.to_param, category: new_attributes }, session: valid_session
         category.reload
-        skip("Add assertions for updated state")
+        expect(category.name).to eq("Play")
       end
 
       it "redirects to the category" do
