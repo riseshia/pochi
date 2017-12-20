@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
 class CoinsController < ApplicationController
+  before_action :require_task
+
   # POST /coins
   def create
-    @coin = Coin.new(coin_params)
-    @coin.unit = current_user.default_unit
-
-    redirect_to tasks_path, notice: "Coin was successfully created." if @coin.save
+    @task.coins.create(unit: current_user.default_unit)
+    redirect_to tasks_path, notice: "Coin was successfully created."
   end
 
-  # DELETE /coins/1
+  # DELETE /coins
   def destroy
-    Coin.find(params[:id]).destroy
+    @task.coins.last&.destroy
     redirect_to tasks_path, notice: "Coin was successfully destroyed."
   end
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def coin_params
-    params.require(:coin).permit(:task_id)
+  def require_task
+    @task = current_user.tasks.find(params[:task_id])
   end
 end

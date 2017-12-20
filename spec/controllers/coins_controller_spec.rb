@@ -22,14 +22,14 @@ RSpec.describe CoinsController, type: :controller do
     end
 
     context "with valid params" do
-      it "creates a new Coin" do
+      it "creates a new coin" do
         expect do
-          post :create, params: { coin: valid_attributes }, session: valid_session
+          post :create, params: valid_attributes, session: valid_session
         end.to change(Coin, :count).by(1)
       end
 
       it "redirects to the created coin" do
-        post :create, params: { coin: valid_attributes }, session: valid_session
+        post :create, params: valid_attributes, session: valid_session
         expect(response).to redirect_to(tasks_path)
       end
     end
@@ -39,13 +39,13 @@ RSpec.describe CoinsController, type: :controller do
     it "destroys the requested coin" do
       coin = create(:coin, task: task)
       expect do
-        delete :destroy, params: { id: coin.to_param }, session: valid_session
+        delete :destroy, params: { task_id: task.id }, session: valid_session
       end.to change(Coin, :count).by(-1)
     end
 
     it "redirects to the coins list" do
       coin = create(:coin, task: task)
-      delete :destroy, params: { id: coin.to_param }, session: valid_session
+      delete :destroy, params: { task_id: task.id }, session: valid_session
       expect(response).to redirect_to(tasks_path)
     end
   end

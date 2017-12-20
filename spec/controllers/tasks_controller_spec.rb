@@ -31,14 +31,6 @@ RSpec.describe TasksController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      task = create(:task, category: category, user: user)
-      get :show, params: { id: task.to_param }, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
@@ -64,7 +56,7 @@ RSpec.describe TasksController, type: :controller do
 
       it "redirects to the created task" do
         post :create, params: { task: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Task.last)
+        expect(response).to redirect_to(tasks_path)
       end
     end
 
@@ -92,7 +84,7 @@ RSpec.describe TasksController, type: :controller do
       it "redirects to the task" do
         task = create(:task, category: category, user: user)
         put :update, params: { id: task.to_param, task: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(task)
+        expect(response).to redirect_to(tasks_path)
       end
     end
 

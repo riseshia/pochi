@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: %i[edit update destroy]
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.includes(:category)
   end
-
-  # GET /tasks/1
-  def show; end
 
   # GET /tasks/new
   def new
@@ -28,7 +25,7 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save
-      redirect_to @task, notice: "Task was successfully created."
+      redirect_to tasks_path, notice: "Task was successfully created."
     else
       @categories = Category.all
       render :new
@@ -38,7 +35,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: "Task was successfully updated."
+      redirect_to tasks_path, notice: "Task was successfully updated."
     else
       @categories = Category.all
       render :edit
