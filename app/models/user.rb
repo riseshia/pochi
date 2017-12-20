@@ -18,4 +18,8 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def default_unit
+    25
+  end
 end
