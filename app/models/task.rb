@@ -11,4 +11,5 @@ class Task < ApplicationRecord
   validates :category_id, presence: true
 
   delegate :name, to: :category, prefix: true, allow_nil: true
+  delegate :count, to: :coins, prefix: true, allow_nil: true
 end

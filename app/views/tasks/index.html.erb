@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-primary" role="alert"> <%= notice %> </div>
+<% end %>
 
-<ul class="list-group">
+<ul class="task-list list-group">
   <% @tasks.each do |task| %>
     <li class="list-group-item">
       <div class="d-flex justify-content-between">
@@ -10,6 +12,7 @@
         </div>
         <div class="task-action">
           <%= link_to octicon("diff-added", height: 20), coins_path(task_id: task.id), method: :post %>
+          <span><%= task.coins_count %></span>
           <%= link_to octicon("diff-removed", height: 20), coins_path(task_id: task.id), method: :delete, data: { confirm: 'Are you sure?' } %>
           <%= link_to octicon("pencil", height: 20), edit_task_path(task) %>
           <%= link_to octicon("trashcan", height: 20, fill: "#dc3545"), task, method: :delete, data: { confirm: 'Are you sure?' } %>

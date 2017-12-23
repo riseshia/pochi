@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = current_user.tasks.includes(:category)
+    @tasks = current_user.tasks.includes(:category, :coins)
   end
 
   # GET /tasks/new
