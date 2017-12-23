@@ -30,7 +30,7 @@ RSpec.describe CoinsController, type: :controller do
 
       it "redirects to the created coin" do
         post :create, params: valid_attributes, session: valid_session
-        expect(response).to redirect_to(tasks_path)
+        expect(response).to redirect_to(root_path)
       end
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe CoinsController, type: :controller do
     it "redirects to the coins list" do
       coin = create(:coin, task: task)
       delete :destroy, params: { task_id: task.id }, session: valid_session
-      expect(response).to redirect_to(tasks_path)
+      expect(response).to redirect_to(root_path)
     end
   end
 end

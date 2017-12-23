@@ -56,7 +56,7 @@ RSpec.describe TasksController, type: :controller do
 
       it "redirects to the created task" do
         post :create, params: { task: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(tasks_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -84,7 +84,7 @@ RSpec.describe TasksController, type: :controller do
       it "redirects to the task" do
         task = create(:task, category: category, user: user)
         put :update, params: { id: task.to_param, task: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(tasks_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 

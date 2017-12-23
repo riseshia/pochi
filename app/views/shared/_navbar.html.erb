@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between" style="width: 100%;">
     <% if current_user %>
       <ul class="navbar-nav">
-        <% { "Tasks" => tasks_path, "Categories" => categories_path }.each do |text, path| %>
+        <% { "Tasks" => root_path, "Categories" => categories_path }.each do |text, path| %>
           <% if params[:controller] == text.downcase %>
             <li class="nav-item active">
           <% else %>

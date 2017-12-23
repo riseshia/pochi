@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save
-      redirect_to tasks_path, notice: "Task was successfully created."
+      redirect_to root_path, notice: "Task was successfully created."
     else
       @categories = Category.all
       render :new
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "Task was successfully updated."
+      redirect_to root_path, notice: "Task was successfully updated."
     else
       @categories = Category.all
       render :edit

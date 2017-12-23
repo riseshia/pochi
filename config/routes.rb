@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: "top#index"
+  root to: "tasks#index"
 
   resources :categories, only: %i[index new edit create update destroy]
   resources :tasks, only: %i[index new edit create update destroy]

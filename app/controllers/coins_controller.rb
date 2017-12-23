@@ -6,13 +6,13 @@ class CoinsController < ApplicationController
   # POST /coins
   def create
     @task.coins.create(unit: current_user.default_unit)
-    redirect_to tasks_path, notice: "Coin was successfully created."
+    redirect_to root_path, notice: "Coin was successfully created."
   end
 
   # DELETE /coins
   def destroy
     @task.coins.last&.destroy
-    redirect_to tasks_path, notice: "Coin was successfully destroyed."
+    redirect_to root_path, notice: "Coin was successfully destroyed."
   end
 
   private
