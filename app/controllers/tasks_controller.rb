@@ -6,6 +6,8 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @tasks = current_user.tasks.includes(:category, :coins)
+    scope = params[:filter] || :doing
+    @tasks = @tasks.send(scope)
   end
 
   # GET /tasks/new

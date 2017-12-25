@@ -12,4 +12,7 @@ class Task < ApplicationRecord
 
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :count, to: :coins, prefix: true, allow_nil: true
+
+  scope :doing, -> { where(done: false) }
+  scope :done, -> { where(done: true) }
 end
