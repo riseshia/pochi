@@ -7,6 +7,9 @@
     <li class="list-group-item">
       <div class="d-flex justify-content-between">
         <div class="task-description">
+          <% unless task.done? %>
+            <%= link_to octicon("check", height: 20, fill: "#449d44"), done_task_path(task), method: :post, data: { confirm: 'Are you sure?' } %>
+          <% end %>
           <span class="badge badge-primary"><%= task.category_name %></span>
           <%= task.name %>
         </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220093437) do
+ActiveRecord::Schema.define(version: 20171225110125) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 128, null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20171220093437) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "done", default: false, null: false
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id", "category_id"], name: "task_user_id_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"

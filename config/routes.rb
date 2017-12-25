@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root to: "tasks#index"
 
   resources :categories, only: %i[index new edit create update destroy]
-  resources :tasks, only: %i[index new edit create update destroy]
+  resources :tasks, only: %i[index new edit create update destroy] do
+    member do
+      post :done
+    end
+  end
   resources :coins, only: %i[create] do
     collection do
       delete :destroy

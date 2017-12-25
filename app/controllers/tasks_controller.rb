@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[edit update destroy]
+  before_action :set_task, only: %i[edit update destroy done]
 
   # GET /tasks
   def index
@@ -40,6 +40,12 @@ class TasksController < ApplicationController
       @categories = Category.all
       render :edit
     end
+  end
+
+  # POST /tasks/1/done
+  def done
+    @task.toggle!(:done)
+    redirect_to root_path, notice: "Task was successfully updated."
   end
 
   # DELETE /tasks/1
