@@ -13,4 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 
+config/deploy.rb
+config/deploy/
+
 .byebug_history
