@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = current_user.tasks.includes(:category, :coins)
+    @tasks = current_user.tasks.includes(:coins)
     scope = params[:filter] || :doing
     @tasks = @tasks.send(scope)
   end
@@ -13,12 +13,10 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @categories = Category.all
   end
 
   # GET /tasks/1/edit
   def edit
-    @categories = Category.all
   end
 
   # POST /tasks
@@ -29,7 +27,6 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: "Task was successfully created."
     else
-      @categories = Category.all
       render :new
     end
   end
@@ -39,7 +36,6 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to root_path, notice: "Task was successfully updated."
     else
-      @categories = Category.all
       render :edit
     end
   end
@@ -65,6 +61,6 @@ class TasksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_params
-    params.require(:task).permit(:name, :category_id)
+    params.require(:task).permit(:name)
   end
 end

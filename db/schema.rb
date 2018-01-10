@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171225110125) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name", limit: 128, null: false
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_categories_on_user_id"
-  end
-
   create_table "coins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "task_id", null: false
     t.integer "unit", null: false
@@ -39,12 +31,9 @@ ActiveRecord::Schema.define(version: 20171225110125) do
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 256, null: false
     t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "done", default: false, null: false
-    t.index ["category_id"], name: "index_tasks_on_category_id"
-    t.index ["user_id", "category_id"], name: "task_user_id_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -56,9 +45,7 @@ ActiveRecord::Schema.define(version: 20171225110125) do
     t.index ["provider", "uid"], name: "user_uniq_provider_uid", unique: true
   end
 
-  add_foreign_key "categories", "users"
   add_foreign_key "coins", "tasks"
   add_foreign_key "secure_tokens", "users"
-  add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "users"
 end

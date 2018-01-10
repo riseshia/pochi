@@ -8,8 +8,7 @@ RSpec.describe CoinsController, type: :controller do
   end
 
   let(:task) do
-    category = create(:category, user: user)
-    create(:task, user: user, category: category)
+    create(:task, user: user)
   end
 
   let(:valid_session) do

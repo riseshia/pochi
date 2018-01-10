@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   root to: "tasks#index"
 
-  resources :categories, only: %i[index new edit create update destroy]
   resources :tasks, only: %i[index new edit create update destroy] do
     member do
       post :done

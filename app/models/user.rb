@@ -3,7 +3,6 @@
 class User < ApplicationRecord
   has_one :secure_token, dependent: :destroy
 
-  has_many :categories, dependent: :delete_all
   has_many :tasks, dependent: :delete_all
 
   delegate :token, to: :secure_token, allow_nil: true
